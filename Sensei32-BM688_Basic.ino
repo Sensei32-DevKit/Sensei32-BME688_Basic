@@ -82,7 +82,7 @@ bool  VBUS_Status = false, InCharge_Status = false;
 // BME688 add an AI core, not yet supported in Arduino, over the BME680 functions:
 // Existing libraries for BME680 are however compatible with BME688  
 Adafruit_BME680 bme;
-bool  BME680_InitDone = false;
+bool  BME688_InitDone = false;
 
 /*******************************************************************************************
  *
@@ -118,9 +118,13 @@ void setup() {
   // Init BOARD LED
   pinMode(BOARD_LED, OUTPUT);
   
-  // Init HDC1080 Sensor, Default settings: 
-  //  - Heater off
-  //  - 14 bit Temperature and Humidity Measurement Resolutions
+  // Init BME688 Sensor, Default settings: 
+  //  - Temperature Oversampling 8x   (16x, 8x, 4x, 2x, 1x, NONE - are also available)
+  //  - Humidity Oversampling 2x      (16x, 8x, 4x, 2x, 1x, NONE - are also available)
+  //  - Pressure Oversampling 2x      (16x, 8x, 4x, 2x, 1x, NONE - are also available)
+  //  - IIR Filter Size 3             (127, 63, 31, 7,3, 1, 0    - are also available)
+  //  - Gas sensor temperature 320*C
+  //  - Gas sensor heating time 150ms
   if (!bme.begin(0x76)) {
     
     Serial.println("[" + String(millis()) + "] BME688: Init: Could not find sensor, check wiring!");
@@ -134,7 +138,7 @@ void setup() {
     bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
     bme.setGasHeater(320, 150); // 320*C for 150 ms
     // Signal Init process done
-    BME680_InitDone = true;
+    BME688_InitDone = true;
     Serial.println("[" + String(millis()) + "] BME688: Init: Done");
     
   }
@@ -169,10 +173,10 @@ void loop() {
     digitalWrite(BOARD_LED, HIGH);
     Serial.println("[" + String(millis()) + "] LED ON");
 
-    // Check if init was successfull
-    if( BME680_InitDone != false ){
+    // Check if BME688 init was successfull
+    if( BME688_InitDone != false ){
       
-      // Read sample
+      // Read BME688 sample
       if (!bme.performReading()) {
         Serial.println("[" + String(millis()) + "] BME688: Error: Cannot perform read!");
       } else {
