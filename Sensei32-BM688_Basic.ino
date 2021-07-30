@@ -181,9 +181,9 @@ void loop() {
         Serial.println("[" + String(millis()) + "] BME688: Error: Cannot perform read!");
       } else {
         Serial.println("[" + String(millis()) + "] BME688: Temperature = " + String(bme.temperature) + " *C");
-        Serial.println("[" + String(millis()) + "] BME688: Humidity =    " + String(bme.humidity) + " %");
-        Serial.println("[" + String(millis()) + "] BME688: Pressure =    " + String(bme.pressure / 100.0) + " hPa");
-        Serial.println("[" + String(millis()) + "] BME688: Gas =         " + String(bme.gas_resistance / 1000.0) + " KOhms");
+        Serial.println("[" + String(millis()) + "] BME688: Humidity    = " + String(bme.humidity) + " %");
+        Serial.println("[" + String(millis()) + "] BME688: Pressure    = " + String(bme.pressure / 100.0) + " hPa");
+        Serial.println("[" + String(millis()) + "] BME688: Gas         = " + String(bme.gas_resistance / 1000.0) + " KOhms");
       }
       
     } else {
