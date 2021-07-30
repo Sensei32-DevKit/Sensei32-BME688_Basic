@@ -79,7 +79,7 @@ Once installed the ESP32 Arduino Board Support Package, Sensei32 Arduino board c
 ### 2. Install basic libraries
 
 Sensei32 can be used with most third-party library designed for Arduino. In this example, the integrated Bosh BME688 Temperature, Humidity, Presssure and Air Quality sensor is read using a standard library, that can be easily downloaded from the Arduino Library Manager:
-- BME680 Library form Adafruit (compatible with the BME688), [Library Github][AdaBME]
+- BME680 Library form Adafruit , [Library Github][AdaBME]
 
 From Adafruit Library Git: "The BME680 takes those sensors to the next step in that it contains a small MOX sensor. The heated metal oxide changes resistance based on the volatile organic compounds (VOC) in the air, so it can be used to detect gasses & alcohols such as Ethanol, Alcohol and Carbon Monoxide, and perform air quality measurements. Note it will give you **one resistance value**, with overall VOC content, but it cannot differentiate gasses or alcohols."
 
@@ -96,6 +96,7 @@ We would like to acknowledge the assistance of [G6EJD][G6EJD_H] that has inspire
 
    [arduesp]: <https://www.hackster.io/abdularbi17/how-to-install-esp32-board-in-arduino-ide-1cd571>
    [G6EJD_H]: <http://g6ejd.dynu.com>
+   [AdaBME]: <https://github.com/adafruit/Adafruit_BME680>   
    [WEMOS]: <https://wiki.geekworm.com/index.php/WEMOS_ESP32_Board_with_18650_Battery_Holder>
    [DChan]: <https://discord.gg/HK5cx9yMgQ>
    [HChan]: <https://hackaday.io/project/180675-sensei32>
