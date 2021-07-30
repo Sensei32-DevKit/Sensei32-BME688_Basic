@@ -122,9 +122,11 @@ void setup() {
   //  - Heater off
   //  - 14 bit Temperature and Humidity Measurement Resolutions
   if (!bme.begin(0x76)) {
+    
     Serial.println("[" + String(millis()) + "] BME688: Init: Could not find sensor, check wiring!");
-    while (1);
+    
   } else {
+    
     // Set up oversampling and filter initialization
     bme.setTemperatureOversampling(BME680_OS_8X);
     bme.setHumidityOversampling(BME680_OS_2X);
@@ -134,6 +136,7 @@ void setup() {
     // Signal Init process done
     BME680_InitDone = true;
     Serial.println("[" + String(millis()) + "] BME688: Init: Done");
+    
   }
   
 }
@@ -168,15 +171,21 @@ void loop() {
 
     // Check if init was successfull
     if( BME680_InitDone != false ){
+      
       // Read sample
       if (!bme.performReading()) {
-        Serial.println("Failed to perform reading :(");
+        Serial.println("[" + String(millis()) + "] BME688: Error: Cannot perform read!");
       } else {
-        Serial.println("[" + String(millis()) + "] HDC1080: Temperature = " + String(bme.temperature) + " *C");
-        Serial.println("[" + String(millis()) + "] HDC1080: Humidity =    " + String(bme.humidity) + " %");
-        Serial.println("[" + String(millis()) + "] HDC1080: Pressure =    " + String(bme.pressure / 100.0) + " hPa");
-        Serial.println("[" + String(millis()) + "] HDC1080: Gas =         " + String(bme.gas_resistance / 1000.0) + " KOhms");
+        Serial.println("[" + String(millis()) + "] BME688: Temperature = " + String(bme.temperature) + " *C");
+        Serial.println("[" + String(millis()) + "] BME688: Humidity =    " + String(bme.humidity) + " %");
+        Serial.println("[" + String(millis()) + "] BME688: Pressure =    " + String(bme.pressure / 100.0) + " hPa");
+        Serial.println("[" + String(millis()) + "] BME688: Gas =         " + String(bme.gas_resistance / 1000.0) + " KOhms");
       }
+      
+    } else {
+      
+      Serial.println("[" + String(millis()) + "] BME688: Error: Sensor init failed!");
+      
     }
 
     // Wait a little
